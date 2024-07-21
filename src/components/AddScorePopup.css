@@ -1,0 +1,57 @@
+/* src/components/AddScorePopup.css */
+.add-score-popup {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 1s ease-in-out;
+  z-index: 1000;
+}
+
+.add-score-popup.show {
+  transform: translate(-50%, 50%);
+}
+
+.add-score-popup.hide {
+  transform: translate(-50%, -100%);
+}
+
+.add-score-popup h2 {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.add-score-popup input {
+  display: block;
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.add-score-popup button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background: #FFD700; /* Gold color */
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-score-popup button:hover {
+  background: #FFA500; /* Darker gold color */
+}

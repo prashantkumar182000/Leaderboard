@@ -1,0 +1,42 @@
+.recent-entry {
+  margin: 20px auto;
+  width: 90%;
+  background: radial-gradient(circle, rgba(31, 252, 233, 0.5) 0%, rgba(191, 191, 245, 0.1) 100%);
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.recent-entry h2 {
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #9e8808, #f8c806, #ad8817d3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-align: left;
+}
+
+.recent-entry .entry {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background: radial-gradient(circle, rgba(136, 136, 136, 0.7) 60%, rgba(37, 34, 34, 0.7) 100%);
+  border-radius: 10px;
+}
+
+.recent-entry .entry span {
+  flex: 1;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

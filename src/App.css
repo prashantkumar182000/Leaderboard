@@ -1,0 +1,60 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.App-logo {
+  height: 50px;
+  margin-right: 20px;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.add-score-button {
+  background: #FFD700; /* Gold color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-score-button:hover {
+  background: #FFA500; /* Darker gold color */
+}
+
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  padding-bottom: 300px; /* Increase bottom padding to ensure enough space for the footer */
+}
+
+.App-footer {
+  background-color: #282c34;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 100px; /* Ensure this matches the footer height */
+  box-sizing: border-box;
+}

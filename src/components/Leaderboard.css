@@ -1,0 +1,109 @@
+/* src/components/Leaderboard.css */
+
+.leaderboard {
+  width: 100%; /* Cover the entire width */
+  margin: 0 auto;
+  background:  url('../assets/your-background-image.png') no-repeat center center; /* Path to your background image */
+  background-size: cover; /* Ensure the background image covers the entire container */
+  border-radius: 10px;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.leaderboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leaderboard h1 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #383000, #FFCC00, #f7c83c8e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+ 
+}
+
+.leaderboard ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+.leaderboard li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  font-family: 'Arial', sans-serif;
+}
+
+.rank-1 {
+  background: radial-gradient(circle, #faeb96 60%, #FFCC00 100%); /* Gold color gradient */
+}
+
+.rank-2 {
+  background: radial-gradient(circle, #e0e0e0 60%, #A8A8A8 100%); /* Silver color gradient */
+}
+
+.rank-3 {
+  background: radial-gradient(circle, #ffc082 60%, #B87333 100%); /* Bronze color gradient */
+}
+
+.default-rank {
+  background: radial-gradient(circle, #888888 60%, #252222 100%); /* Dark-gray gradient for a subtle, rich effect */
+}
+
+
+.leaderboard li.rank-1, .leaderboard li.rank-2, .leaderboard li.rank-3 {
+  color: black; /* Text color for top 3 ranks */
+  font-weight: bold;
+}
+
+.leaderboard li .rank, .leaderboard li .username, .leaderboard li .score {
+  padding: 10px;
+}
+
+.leaderboard li .rank {
+  width: 10%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.leaderboard li .username {
+  width: 50%;
+  text-align: left;
+}
+
+.leaderboard li .score {
+  width: 40%;
+  text-align: right;
+  font-family: 'Courier New', monospace;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.score-entry {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
