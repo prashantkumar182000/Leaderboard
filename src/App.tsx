@@ -19,11 +19,12 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <main>
       <header className="App-header">
         <img src={logo} alt="Logo" className="App-logo" />
         <button className="add-score-button" onClick={handleOpenPopup}>Add Score</button>
       </header>
-      <main>
+      
         <Leaderboard onAddScore={handleOpenPopup} />
         <RecentEntry />
         {isPopupVisible && <AddScorePopup onClose={handleClosePopup} />}

@@ -1,4 +1,3 @@
-// src/components/Leaderboard.tsx
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
@@ -16,20 +15,24 @@ const Leaderboard: React.FC<{ onAddScore: () => void }> = ({ onAddScore }) => {
   };
 
   return (
-    <div className="leaderboard">
-      <header>
+    <>
+      <header className="leaderboard-header">
         <h1>FASTEST OF TODAY</h1>
       </header>
-      <ul>
-        {scores.map((score: Score, index: number) => (
-          <li key={index} className={`score-entry ${getRankClass(index)}`}>
-            <span className="rank">{index + 1}</span>
-            <span className="username">{score.username}</span>
-            <span className="score">{score.score}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <div className="leaderboard">
+        <div className="leaderboard-list">
+          <ul>
+            {scores.map((score: Score, index: number) => (
+              <li key={index} className={`score-entry ${getRankClass(index)}`}>
+                <span className="rank">{index + 1}</span>
+                <span className="username">{score.username}</span>
+                <span className="score">{score.score}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </>
   );
 };
 
