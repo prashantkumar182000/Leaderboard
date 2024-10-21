@@ -1,5 +1,8 @@
 # Leaderboard Project
 
+https://github.com/user-attachments/assets/2e65e4f3-d481-413c-a873-0f9122c4b7c8
+
+
 ## Overview
 This project is a responsive leaderboard application built using ReactJS and TypeScript. The application displays the top 10 scores of players and includes various features such as an auto-scrolling footer, a smooth animation for new score entries, and a popup for adding scores.
 
