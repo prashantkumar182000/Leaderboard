@@ -4,6 +4,7 @@ export interface Score {
   username: string;
   score: string; // formatted as MM:SS:MSS
   amount: string;
+  timestamp: number; // Add a timestamp field
 }
 
 interface ScoresState {
@@ -18,10 +19,14 @@ const scoreSlice = createSlice({
   name: 'scores',
   initialState,
   reducers: {
-    addScore(state, action: PayloadAction<Score>) {
-      state.scores.push(action.payload);
-      state.scores.sort((a, b) => a.score.localeCompare(b.score)); // Sort scores in ascending order
-      if (state.scores.length > 10) state.scores.pop(); // Keep only top 10 scores
+    addScore(state, action: PayloadAction<Omit<Score, 'timestamp'>>) {
+      const newScore = {
+        ...action.payload,
+        timestamp: Date.now(), // Add a timestamp to the new score
+      };
+      const newScores = [...state.scores, newScore]; // Create a new array with the new score
+      newScores.sort((a, b) => a.score.localeCompare(b.score)); // Sort the new array
+      state.scores = newScores; // Update the state immutably
     },
   },
 });

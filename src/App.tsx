@@ -8,6 +8,7 @@ import logo from './assets/Group 9 (1).svg';
 
 const App: React.FC = () => {
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [recentEntry, setRecentEntry] = useState<{ username: string; score: string } | null>(null);
 
   const handleOpenPopup = () => {
     setPopupVisible(true);
@@ -17,17 +18,25 @@ const App: React.FC = () => {
     setPopupVisible(false);
   };
 
+  const handleAddScore = (username: string, score: string) => {
+    setRecentEntry({ username, score }); // Update the recent entry
+  };
+
   return (
     <div className="App">
-      <main>
       <header className="App-header">
         <img src={logo} alt="Logo" className="App-logo" />
         <button className="add-score-button" onClick={handleOpenPopup}>Add Score</button>
       </header>
-      
+      <main>
         <Leaderboard onAddScore={handleOpenPopup} />
-        <RecentEntry />
-        {isPopupVisible && <AddScorePopup onClose={handleClosePopup} />}
+        <RecentEntry recentEntry={recentEntry} />
+        {isPopupVisible && (
+          <AddScorePopup
+            onClose={handleClosePopup}
+            onAddScore={handleAddScore} // Pass the handleAddScore function
+          />
+        )}
       </main>
       <Footer />
     </div>

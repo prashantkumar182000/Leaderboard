@@ -4,14 +4,16 @@
   top: 0;
   left: 50%;
   transform: translate(-50%, -100%);
-  background: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(145deg, #1e1e2f, #2a2a40); /* Gradient background */
   color: white;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 15px;
   width: 400px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  border: 2px solid #ff4757; /* Accent border */
   transition: transform 1s ease-in-out;
   z-index: 1000;
+  font-family: 'Orbitron', sans-serif; /* Modern font */
 }
 
 .add-score-popup.show {
@@ -26,16 +28,64 @@
   margin: 0 0 20px;
   text-align: center;
   font-size: 1.8rem;
+  background: linear-gradient(45deg, #ff6b6b, #ff4757); /* Gradient text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.input-group {
+  position: relative;
+  margin: 15px 0;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff4757;
 }
 
 .add-score-popup input {
   display: block;
-  width: calc(100% - 20px);
-  margin: 10px auto;
-  padding: 10px;
-  border: none;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+  padding: 10px 10px 10px 40px; /* Add padding for the icon */
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border: 2px solid #ff4757; /* Accent border */
   border-radius: 5px;
   font-size: 1rem;
+  color: white;
+  font-family: 'Orbitron', sans-serif; /* Modern font */
+  transition: border-color 0.3s ease;
+}
+
+.add-score-popup input:focus {
+  border-color: #ff6b6b; /* Highlight border on focus */
+  outline: none;
+}
+
+.add-score-popup input::placeholder {
+  color: rgba(255, 255, 255, 0.5); /* Placeholder text color */
 }
 
 .add-score-popup button {
@@ -43,15 +93,41 @@
   width: 100%;
   padding: 10px;
   margin-top: 20px;
-  background: #FFD700; /* Gold color */
+  background: linear-gradient(45deg, #ff6b6b, #ff4757); /* Gradient background */
   border: none;
   border-radius: 5px;
-  color: black;
+  color: white;
   font-size: 1.2rem;
+  font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 .add-score-popup button:hover {
-  background: #FFA500; /* Darker gold color */
+  background: linear-gradient(45deg, #ff4757, #ff6b6b); /* Darker gradient on hover */
+}
+
+.add-score-popup button:disabled {
+  background: #888;
+  cursor: not-allowed;
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+  .add-score-popup {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 20px;
+  }
+
+  .add-score-popup h2 {
+    font-size: 1.5rem;
+  }
+
+  .add-score-popup input {
+    font-size: 0.9rem;
+  }
+
+  .add-score-popup button {
+    font-size: 1rem;
+  }
 }

@@ -2,11 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addScore } from '../store/scoreSlice';
 import './AddScorePopup.css';
+import { FaUser, FaClock } from 'react-icons/fa'; // Import icons
 
-const AddScorePopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+interface AddScorePopupProps {
+  onClose: () => void;
+  onAddScore: (username: string, score: string) => void;
+}
+
+const AddScorePopup: React.FC<AddScorePopupProps> = ({ onClose, onAddScore }) => {
   const [username, setUsername] = useState('');
   const [score, setScore] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // For loading state
+  const [error, setError] = useState(''); // For error messages
 
   const dispatch = useDispatch();
   const popupRef = useRef<HTMLDivElement>(null);
@@ -17,12 +25,29 @@ const AddScorePopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   }, []);
 
   const handleAddScore = () => {
-    if (username && score) {
-      dispatch(addScore({ username, score, amount: '' })); // Provide a default value for amount
+    if (!username || !score) {
+      setError('Please fill in all fields.');
+      return;
+    }
+
+    // Validate the score format (MM:SS:MSS)
+    const scoreRegex = /^\d{2}:\d{2}:\d{3}$/;
+    if (!scoreRegex.test(score)) {
+      setError('Invalid score format. Use MM:SS:MSS.');
+      return;
+    }
+
+    setIsSubmitting(true); // Show loading state
+    setError(''); // Clear any previous errors
+
+    setTimeout(() => {
+      dispatch(addScore({ username, score, amount: '' })); // Dispatch the Redux action
+      onAddScore(username, score); // Update the recent entry in App.tsx
       setUsername('');
       setScore('');
+      setIsSubmitting(false);
       closePopup();
-    }
+    }, 1000); // Simulate a delay for submission
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -54,25 +79,31 @@ const AddScorePopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     <div className={`add-score-popup ${isVisible ? 'show' : 'hide'}`} ref={popupRef}>
       <div className="popup-content">
         <h2>Add Score</h2>
-        <label>
-          Username:
+        {error && <div className="error-message">{error}</div>}
+        <div className="input-group">
+          <FaUser className="input-icon" />
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            required
           />
-        </label>
-        <label>
-          Score (MM:SS:MSS):
+        </div>
+        <div className="input-group">
+          <FaClock className="input-icon" />
           <input
             type="text"
             value={score}
             onChange={handleScoreChange}
-            maxLength={9}
             placeholder="MM:SS:MSS"
+            maxLength={9}
+            required
           />
-        </label>
-        <button onClick={handleAddScore}>Submit</button>
+        </div>
+        <button onClick={handleAddScore} disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit'}
+        </button>
       </div>
     </div>
   );

@@ -1,14 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
 import './RecentEntry.css';
 
-const RecentEntry: React.FC = () => {
-  const recentEntry = useSelector((state: RootState) => {
-    const scores = state.scores.scores;
-    return scores[scores.length - 1];
-  });
+interface RecentEntryProps {
+  recentEntry: { username: string; score: string } | null;
+}
 
+const RecentEntry: React.FC<RecentEntryProps> = ({ recentEntry }) => {
   if (!recentEntry) return null;
 
   return (
@@ -17,7 +14,6 @@ const RecentEntry: React.FC = () => {
       <div className="entry">
         <span className="username">{recentEntry.username}</span>
         <span className="score">{recentEntry.score}</span>
-        {recentEntry.amount && <span className="amount">{recentEntry.amount}</span>}
       </div>
     </div>
   );

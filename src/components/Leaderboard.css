@@ -1,12 +1,12 @@
 .leaderboard {
-  width: 97%;
-  height: 90%;
-  margin: 10px 0;
+  max-width: 100%; /* Allow the leaderboard to take up the full width */
+  height: 78%;
+  margin: 10px auto;
   background: url('../assets/your-background-image.png') no-repeat center center;
   background-size: cover;
   border-radius: 10px;
   color: white;
-  padding: 0 20px;
+  padding: 0 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
@@ -14,24 +14,61 @@
 }
 
 .leaderboard-header {
-  font-size: 0.8em;
+  font-size: 1.5rem; /* Larger font size for better visibility */
   text-transform: uppercase;
-  background: linear-gradient(45deg, #1b1b1b, #363634, #33312b8e);
-  color: #FFD700;
+  background: linear-gradient(145deg, #1e1e2f, #2a2a40); /* Gradient background */
+  color: #fff;
   width: 100%;
-  position: sticky;
-  top: 0;
-  left: 0;
-  padding: 5px 0;
+  padding: 80px 0 20px 0; /* Add top padding to account for the fixed App-header */
   text-align: center;
-  z-index: 10;
-  flex-shrink: 0; /* Prevent shrinking */
+  border-bottom: 2px solid #ff4757; /* Accent border */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  margin-bottom: 20px;
+  font-family: 'Orbitron', sans-serif; /* Modern font */
+}
+
+.leaderboard-header h1 {
+  margin: 0;
+  background: linear-gradient(45deg, #ff6b6b, #ff4757); /* Gradient text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .leaderboard-list {
   overflow-y: auto;
   flex-grow: 1;
   margin-top: 5px;
+  scrollbar-width: thin; /* Better scrollbar for modern browsers */
+  scrollbar-color: #ff4757 #1e1e2f; /* Scrollbar color */
+}
+
+.leaderboard-list::-webkit-scrollbar {
+  width: 6px; /* Scrollbar width */
+}
+
+.leaderboard-list::-webkit-scrollbar-track {
+  background: #1e1e2f; /* Scrollbar track color */
+}
+
+.leaderboard-list::-webkit-scrollbar-thumb {
+  background: #ff4757; /* Scrollbar thumb color */
+  border-radius: 4px; /* Rounded scrollbar thumb */
+}
+
+.leaderboard-list::-webkit-scrollbar-thumb:hover {
+  background: #ff6b6b; /* Scrollbar thumb hover color */
 }
 
 .leaderboard ul {
@@ -41,7 +78,7 @@
 }
 
 .leaderboard li {
-  padding: 5px 20px;
+  padding: 10px 20px; /* Slightly more padding for better spacing */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,31 +86,34 @@
   border-radius: 5px;
   font-size: 1.2rem;
   font-weight: bold;
-  font-family: 'Arial', sans-serif;
-  height: calc((90vh - 415px) / 10); /* 90vh for leaderboard height, adjust 415px to account for header and margins */
+  font-family: 'Orbitron', sans-serif; /* Modern font */
+  height: calc((90vh - 545px) / 10); /* 90vh for leaderboard height, adjust 415px to account for header and margins */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+.leaderboard li:hover {
+  transform: scale(1.02); /* Slight zoom on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow on hover */
 }
 
 .rank-1 {
-  background: radial-gradient(circle, #faeb96 60%, #FFCC00 100%);
+  background: radial-gradient(circle, #ffd700 60%, #c0a000 100%); /* Gold gradient */
+  color: #000; /* Dark text for better contrast */
 }
 
 .rank-2 {
-  background: radial-gradient(circle, #e0e0e0 60%, #A8A8A8 100%);
+  background: radial-gradient(circle, #e0e0e0 60%, #a0a0a0 100%); /* Silver gradient */
+  color: #000; /* Dark text for better contrast */
 }
 
 .rank-3 {
-  background: radial-gradient(circle, #ffc082 60%, #B87333 100%);
+  background: radial-gradient(circle, #cd7f32 60%, #8b4513 100%); /* Bronze gradient */
+  color: #000; /* Dark text for better contrast */
 }
 
 .default-rank {
-  background: radial-gradient(circle, #888888 60%, #252222 100%);
-}
-
-.leaderboard li.rank-1,
-.leaderboard li.rank-2,
-.leaderboard li.rank-3 {
-  color: black;
-  font-weight: bold;
+  background: radial-gradient(circle, #888888 60%, #252222 100%); /* Default gradient */
+  color: #fff; /* White text for better contrast */
 }
 
 .leaderboard li .rank,
@@ -86,61 +126,27 @@
   width: 10%;
   text-align: center;
   font-weight: bold;
+  font-size: 1.3rem; /* Slightly larger font for rank */
 }
 
 .leaderboard li .username {
   width: 50%;
   text-align: left;
+  font-size: 1.2rem; /* Consistent font size */
 }
 
 .leaderboard li .score {
   width: 40%;
   text-align: right;
-  font-family: 'Courier New', monospace;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.score-entry {
-  animation: slideIn 0.5s ease-out;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  font-family: 'Courier New', monospace; /* Monospace font for score */
+  font-size: 1.2rem; /* Consistent font size */
 }
 
 /* Responsive styles */
-@media (max-width: 840px) {
-  .leaderboard-header {
-    font-size: 0.7em; /* Adjust header font size for smaller screens */
-  }
-
-  .leaderboard li {
-    font-size: 1rem;
-    padding: 2.7px 16px;
-    height: calc((90vh - 370px) / 10); /* Adjust height for screens with width less than 840px */
-  }
-}
-
 @media (max-width: 768px) {
   .leaderboard-header {
     font-size: 0.7em; /* Adjust header font size for tablets */
   }
-
   .leaderboard li {
     font-size: 1rem;
     padding: 2.8px 16px;
@@ -150,13 +156,11 @@
 
 @media (max-width: 480px) {
   .leaderboard-header {
-    font-size: 0.6em; /* Adjust header font size for mobile */
+    font-size: 0.5em; /* Adjust header font size for mobile */
   }
-
   .leaderboard li {
-    font-size: 0.9rem;
-    padding: 2.7px 12px;
-    height: calc((90vh - 370px) / 10); /* Adjust height for mobile */
+    font-size: 0.8rem; /* Smaller font size for mobile */
+    padding: 3px 10px; /* Adjust padding for mobile */
   }
 }
 
@@ -164,7 +168,6 @@
   .leaderboard-header {
     font-size: 0.4em; /* Adjust header font size for mobile */
   }
-
   .leaderboard li {
     font-size: 0.9rem;
     padding: 2.7px 12px;
@@ -176,7 +179,6 @@
   .leaderboard-header {
     font-size: 0.4em; /* Adjust header font size for smaller height */
   }
-
   .leaderboard li {
     font-size: 0.9rem;
     padding: 2.7px 12px;
@@ -188,35 +190,64 @@
   .leaderboard-header {
     font-size: 0.4em; /* Adjust header font size for smaller height */
   }
-
   .leaderboard li {
     font-size: 0.9rem;
-    padding: 2.7px 12px;
+    padding: 2.0px 12px;
     height: calc((90vh - 370px) / 10); /* Adjust height for smaller height */
   }
 }
 
+@media (max-height: 630px) {
+  .leaderboard-header {
+    font-size: 0.4em; /* Adjust header font size for smaller height */
+  }
+  .leaderboard li {
+    font-size: 0.9rem;
+    padding: 1.9px 12px;
+    height: calc((90vh - 370px) / 10); /* Adjust height for smaller height */
+  }
+}
+
+@media (max-height: 605px) {
+  .leaderboard-header {
+    font-size: 0.4em; /* Adjust header font size for smaller height */
+  }
+  .leaderboard li {
+    font-size: 0.9rem;
+    padding: 1.7px 12px;
+    height: calc((90vh - 370px) / 10); /* Adjust height for smaller height */
+  }
+}
+
+@media (max-height: 585px) {
+  .leaderboard-header {
+    font-size: 0.4em; /* Adjust header font size for smaller height */
+  }
+  .leaderboard li {
+    font-size: 0.8rem;
+    padding: 1.5px 12px;
+    height: calc((90vh - 370px) / 10); /* Adjust height for smaller height */
+  }
+}
 
 @media (max-height: 520px) {
   .leaderboard-header {
     font-size: 0.2em; /* Adjust header font size for smaller height */
   }
-
   .leaderboard li {
-    font-size: 0.9rem;
-    padding: 2.7px 12px;
+    font-size: 0.7rem;
+    padding: 1.7px 12px;
     height: calc((90vh - 370px) / 10); /* Adjust height for smaller height */
   }
 }
 
-@media (max-height: 450px) {
+@media (max-height: 480px) {
   .leaderboard-header {
     font-size: 0.1em; /* Adjust header font size for smaller height */
   }
-
   .leaderboard li {
-    font-size: 0.6rem;
-    padding: 2.7px 12px;
+    font-size: 0.5rem;
+    padding: 1.5px 12px;
     height: calc((90vh - 370px) / 10); /* Adjust height for smaller height */
   }
 }
@@ -224,11 +255,5 @@
 @media (max-height: 415px) {
   .leaderboard-header {
     font-size: 0.01em; /* Adjust header font size for smaller height */
-  }
-
-  .leaderboard li {
-    font-size: 0.4rem;
-    padding: 2.7px 12px;
-    height: calc((90vh - 370px) / 10); /* Adjust height for smaller height */
   }
 }
