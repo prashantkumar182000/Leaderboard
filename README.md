@@ -1,4 +1,4 @@
-# 🚗 Formula One Leaderboard Application (Version 2) 🏁
+# 🚗 Formula One Leaderboard Application (v2) 🏁
 
 
 ## Overview
